@@ -6,5 +6,3 @@ Base: DeclarativeMeta = declarative_base()
 
 from .example_model import ExampleModel  # noqa: F401
 
-# Import all models here to ensure they are registered with SQLAlchemy
-from .user import User  # noqa: F401

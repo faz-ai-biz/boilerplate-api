@@ -1,10 +1,8 @@
-version: "3.9"
-
 networks:
   frontend:
-    name: ${COMPOSE_PROJECT_NAME:-api}_frontend
+    name: ${COMPOSE_PROJECT_NAME:-api}_frontend-${ENVIRONMENT:-prod}
   backend:
-    name: ${COMPOSE_PROJECT_NAME:-api}_backend
+    name: ${COMPOSE_PROJECT_NAME:-api}_backend-${ENVIRONMENT:-prod}
     internal: true  # No external access
 
 services:
@@ -19,12 +17,12 @@ services:
   web:
     container_name: ${COMPOSE_PROJECT_NAME:-api}-web-${ENVIRONMENT:-prod}
     build:
-      context: ..
-      dockerfile: devops/Dockerfile.prod
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "8000:8000"
     env_file:
-      - ../.env.prod
+      - .env
     depends_on:
       - db
     networks:

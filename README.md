@@ -23,12 +23,12 @@ for API development, testing, documentation, and deployment.
 ### Local Development
 ```bash
 # Clone repository
-git clone https://github.com/your-username/hello_world_project.git
+git clone https://github.com/pedroanisio/hello_world_project.git
 cd hello_world_project
 
 # Create virtual environment
 python -m venv venv
-source venv/bin/activate  # or `venv\Scripts\activate` on Windows
+source venv/bin/activate  
 
 # Install dependencies
 pip install -r requirements.dev.txt

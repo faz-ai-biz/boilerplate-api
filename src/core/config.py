@@ -1,7 +1,7 @@
 # src/core/config.py
 from typing import Any, ClassVar, Dict
 
-from pydantic import field_validator, computed_field
+from pydantic import computed_field, field_validator
 from pydantic_settings import BaseSettings
 
 

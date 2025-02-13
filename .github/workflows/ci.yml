@@ -58,7 +58,7 @@ jobs:
         run: |
           pip install bandit safety
           bandit -r src/
-          safety check -i 68094 -i 73725 -i 70716 -i 70715 -i 64396 -i 64459
+          safety check
         
       - name: Run tests and check coverage
         env:

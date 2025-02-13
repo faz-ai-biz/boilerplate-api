@@ -4,29 +4,9 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 from src.core.config import settings
-from src.core.token_manager import create_access_token
 from src.db.models import Base
 from src.db.session import get_db
 from src.main import app
-
-
-@pytest.fixture
-def auth_headers():
-    """Create authentication headers with test token"""
-    access_token, _ = create_access_token(
-        {
-            "user_id": 1,
-            "type": "access",
-            "aud": "test-audience",  # Explicitly set test audience
-        }
-    )
-    return {"Authorization": f"Bearer {access_token}"}
-
-
-@pytest.fixture
-def test_user_data():
-    """Test user credentials"""
-    return {"email": "test@example.com", "password": "TestPass123"}
 
 
 @pytest.fixture

@@ -22,20 +22,23 @@ services:
     ports:
       - "8000:8000"
     env_file:
-      - .env
+      - env.prod
     depends_on:
       - db
+    entrypoint: ["/app/devops/scripts/start-prod.sh"]
     networks:
       - frontend
       - backend
 
   db:
+    env_file:
+      - env.prod
     container_name: ${COMPOSE_PROJECT_NAME:-api}-db-${ENVIRONMENT:-prod}
     image: postgres:16
     environment:
-      POSTGRES_USER: ${POSTGRES_USER:-user}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
-      POSTGRES_DB: ${POSTGRES_DB:-${API_NAME:-api}_db}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     ports:
       - "5432:5432"
     healthcheck:

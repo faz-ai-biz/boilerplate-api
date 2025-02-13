@@ -33,12 +33,15 @@ ENV PYTHONUNBUFFERED=1
 # Copy the project files into the container
 COPY . .
 
-# Copy .env.{ENVIRONMENT} to .env
-RUN cp ./devops/.env.prod ./src/.env
+# Copy .env to src/.env
+RUN cp env.prod ./src/.env
 
 # Set ownership and switch to non-root user
 RUN chown -R appuser:appuser /app/src
+
+
 USER appuser
+
 
 # Fix permissions and line endings for scripts
 RUN find /app/devops/scripts -type f -name "*.sh" -exec chmod +x {} \; && \

@@ -1,0 +1,6 @@
+- use flake8 to check for style issues
+- use black to format the code
+- use isort to sort the imports
+- use bandit to check for security issues
+- use safety to check for dependency issues
+- use pylint to check for linting issues

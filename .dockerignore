@@ -1,0 +1,42 @@
+# Version control
+.git
+.gitignore
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.env
+.venv
+venv/
+ENV/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Development/IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Project specific
+devops/scripts/manage.py
+docs/
+README.md
+CHANGELOG.md
+docker-compose*.yml
+Dockerfile*
+.dockerignore
+.pre-commit-config.yaml
+
+# Logs
+logs/
+*.log
+
+# Local development
+.env.local
+.env.*.local

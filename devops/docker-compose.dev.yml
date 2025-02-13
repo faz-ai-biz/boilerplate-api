@@ -1,0 +1,64 @@
+networks:
+  frontend:
+    name: ${COMPOSE_PROJECT_NAME:-api}_frontend_dev
+  backend:
+    name: ${COMPOSE_PROJECT_NAME:-api}_backend_dev
+
+services:
+  redis:
+    container_name: ${COMPOSE_PROJECT_NAME:-api}-redis-dev
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - backend
+
+  web:
+    container_name: ${COMPOSE_PROJECT_NAME:-api}-web-dev
+    build:
+      context: ..
+      dockerfile: devops/Dockerfile
+    env_file:
+      - .env.dev
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    volumes:
+      - ..:/app/
+      - .env.dev:/app/.env
+    entrypoint: ["/app/devops/scripts/startup.sh"]
+    networks:
+      - frontend
+      - backend
+
+  db:
+    env_file:
+      - .env.dev 
+    container_name: ${COMPOSE_PROJECT_NAME:-api}-db-dev
+    image: postgres:16
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_HOST: ${POSTGRES_HOST}
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - backend
+
+volumes:
+  redis_data:
+  postgres_data:

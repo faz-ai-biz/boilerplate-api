@@ -1,0 +1,12 @@
+-r requirements.txt
+pytest
+pytest-cov
+pytest-mock
+pytest-asyncio
+httpx
+flake8
+black
+isort
+bandit>=1.7.5
+safety>=2.3.5
+semgrep>=1.34.0

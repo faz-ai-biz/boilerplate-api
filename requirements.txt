@@ -1,0 +1,19 @@
+fastapi>=0.110.0
+gunicorn>=22.0.0
+json-log-formatter==0.5.0
+passlib[bcrypt]==1.7.4
+prometheus-client==0.17.1
+psycopg2-binary
+pydantic[dotenv,email]>=2.0.0
+pydantic-settings>=2.0.0
+PyJWT>=2.8.0
+cryptography>=42.0.0
+python-multipart==0.0.20
+redis==4.5.5
+slowapi==0.1.7
+SQLAlchemy==2.0.4
+structlog==22.3.0
+uvicorn==0.22.0
+argon2_cffi
+alembic
+# python-jose==3.3.0

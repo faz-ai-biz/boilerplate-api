@@ -1,0 +1,27 @@
+name: SAST
+
+on:
+  push:
+    branches: [ "main", "develop" ]
+  pull_request:
+    branches: [ "main", "develop" ]
+  schedule:
+    - cron: '0 0 * * 0'
+
+jobs:
+  semgrep:
+    runs-on: ubuntu-latest
+    container:
+      image: returntocorp/semgrep
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Run Semgrep Analysis
+        run: |
+          semgrep ci \
+              --config "p/python" \
+              --config "p/owasp-top-ten" \
+              --config "p/security-audit"
+
+        env:
+          SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }} 

@@ -12,7 +12,6 @@ from slowapi.util import get_remote_address
 from src.api.v1.routers import api_router
 from src.core.config import settings
 from src.core.error_handlers import setup_exception_handlers
-from src.core.security import setup_security
 
 # Metrics
 REQUEST_COUNT = Counter(
@@ -52,7 +51,6 @@ def create_app() -> FastAPI:
     )
 
     # Setup security, error handlers, and routers
-    setup_security(app)
     setup_exception_handlers(app)
     app.include_router(api_router)
 

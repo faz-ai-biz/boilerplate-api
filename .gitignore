@@ -60,3 +60,4 @@ pytest_cache/
 *.log
 src/.env
 .env
+src/logs/app.logs
